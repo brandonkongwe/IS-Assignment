@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if user.is_authenticated and user.is_staff == False %}
+{% include 'loans/customer_nav.html' %}
+{% elif user.is_staff == True %}
+{% include 'officer/admin_nav.html' %}
+{% else %}
+{% include 'nav.html' %}
+{% endif %}
+
+{% include 'messages.html' %}
+
+{% load crispy_forms_tags %}
+<head>
+    <title>Predict Loan Defaulters | Alpha Dreamers Banking</title>
+</head>
+<!--Login-->
+<div class="container py-5">
+	<h1 class="font-weight-bold">Predict Possible Defaulters</h1>
+	<hr>
+	<br>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<br>
+		<button class="btn btn-primary" type="submit">Submit</button>
+	</form>
+	<br><br>
+</div>
+
+{% endblock %}

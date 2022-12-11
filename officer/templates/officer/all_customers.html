@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% include 'officer/admin_nav.html' %}
+{% include 'messages.html' %}
+{% load crispy_forms_tags %}
+<head>
+    <title>All Customers | Alpha Dreamers Banking</title>
+</head>
+<div class="container-fluid">
+    <h1>Customers</h1>
+    <br>
+    <table class="table table-bordered">
+        <tr>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>Complete Address</th>
+            <th>Account Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for customer in customers %}
+        <tr>
+            <td>{{customer.first_name}}</td>
+            <td>{{customer.surname}}</td>
+            <td>{{customer.email_address}}</td>
+            <td>{{customer.contact_number}}</td>
+            <td>{{customer.complete_address}}</td>
+            <td>{{customer.account_status}}</td>
+            <td><a href="{% url 'officer:edit-customer' customer.cust_id %}">Edit</a></td>
+            <td><a href="{% url 'officer:delete-customer' customer.cust_id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock content %}

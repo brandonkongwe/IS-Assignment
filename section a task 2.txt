@@ -1,0 +1,6 @@
+startapp: this function creates a Django app directory structure in the current directory or the specified destination for the given app name.
+startproject: this function creates a Django project directory structure in the current directory or the specified destination for the given project name. 
+migrate: this function aligns the database state with the exisiting set of models.
+runserver: this function initiates a lightweight development web server on the local machine.
+makemigrations: this function is responsible for creating new migrations based on changes made to the current models.
+sendtestmail: this function sends a test email to a specified recipient in order to confirm that email sending through Django is working.

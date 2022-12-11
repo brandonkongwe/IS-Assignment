@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'loans/customer_nav.html' %}
+
+{% include 'messages.html' %}
+
+<head>
+    <title>Customer Page | Alpha Dreamers Banking</title>
+</head>
+
+<!--CTA-->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 pb-4">
+            <h1 class="display-4 font-weight-bold">Customer Profile</h1>
+        </div>
+    </div>
+    {% for customer in customers %}
+    <div class="p-5 md-8 text-center alert alert-primary" role="alert">
+        <a class="nav-link" href="{% url 'login:edit-details' customer.cust_id %}"><h1>{{user.first_name|title}} {{user.last_name|title}}</h1></a>
+    </div>
+    {% endfor %}
+        <div id="second-part">
+            <div class="row">
+
+                <div class="col-md-4 ">
+                    <div class="status" style="background-color:lightblue">
+                        <h3>Loan Applications</h3>
+                        <h1><span id="digit">{{loan_count}}</span></h1>
+                    </div>
+                </div>
+
+                <div class="col-md-4 ">
+                    <div class="status" style="background-color:mediumseagreen">
+                        <h3>Loans Approved</h3>
+                        <h1><span id="digit">{{accepted}}</span></h1>
+                    </div>
+                </div>
+
+                <div class="col-md-4 ">
+                    <div class="status" style="background-color:maroon; color:white">
+                        <h3>Loans Rejected</h3>
+                        <h1><span id="digit">{{rejected}}</span></h1>
+                    </div>
+                </div>
+
+                <div class="col-md-4 ">
+                    <div class="status" style="background-color:darkorange">
+                        <h3>Loans Pending</h3>
+                        <h1><span id="digit">{{pending}}</span></h1>
+                    </div>
+                </div>
+
+                <div class="col-md-4 ">
+                    <div class="status" style="background-color:lightpink">
+                        <h3>Remaining Balance</h3>
+                        <h1><span id="digit">P {{remaining}}</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}

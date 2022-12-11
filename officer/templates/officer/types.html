@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated and user.is_staff == False %}
+{% include 'loans/customer_nav.html' %}
+{% elif user.is_staff == True %}
+{% include 'officer/admin_nav.html' %}
+{% else %}
+{% include 'nav.html' %}
+{% endif %}
+{% include 'messages.html' %}
+{% load crispy_forms_tags %}
+<head>
+    <title>Loan Types | Alpha Dreamers Banking</title>
+</head>
+<br>
+<div class="container-fluid">
+    <h1>Loan Types</h1>
+    <br>
+    {% if user.is_staff == False %}
+    <table class="table table-bordered">
+        <tr>
+            <th>Loan Name</th>
+            <th>Description</th>
+        </tr>
+        {% for loan_type in types %}
+        <tr>
+            <td>{{loan_type.loan_name}}</td>
+            <td>{{loan_type.description}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    {% if user.is_staff == True %}
+    <table class="table table-bordered">
+        <tr>
+            <th>Loan Name</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for loan_type in types %}
+        <tr>
+            <td>{{loan_type.loan_name}}</td>
+            <td>{{loan_type.description}}</td>
+            <td><a href="{% url 'officer:edit-type' loan_type.loan_type_id %}">Edit</a></td>
+            <td><a href="{% url 'officer:delete-type' loan_type.loan_type_id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+
+
+{% block content %}
+
+{% include 'nav.html' %}
+{% include 'messages.html' %}
+{% load crispy_forms_tags %}
+
+<head>
+	<title>Login | Alpha Dreamers Banking</title>
+</head>
+
+<!--Login-->
+<div class="container py-5">
+	<h1 class="font-weight-bold">Login</h1>
+	<hr>
+	<br>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<br>
+		<button class="btn btn-primary" type="submit">Login</button>
+	</form>
+	<br><br>
+</div>
+
+{% endblock %}

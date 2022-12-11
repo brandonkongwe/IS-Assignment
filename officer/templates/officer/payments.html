@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated and user.is_staff == False %}
+{% include 'loans/customer_nav.html' %}
+{% elif user.is_staff == True %}
+{% include 'officer/admin_nav.html' %}
+{% else %}
+{% include 'nav.html' %}
+{% endif %}
+{% include 'messages.html' %}
+    {% load crispy_forms_tags %}
+<br>
+<head>
+    <title>All Payments | Alpha Dreamers Banking</title>
+</head>
+<div class="container-fluid">
+    <h1>Loan Payments</h1>
+<br>
+{% if user.is_staff == True %}
+<table class="table table-bordered">
+    <tr>
+        <th>First Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Account Status</th>
+        <th>Payment Amount</th>
+        <th>Proof of Payment</th>
+        <th>Payment Status</th>
+        <th>Comments</th>
+        <th>Reviewed By</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for payment in payments %}
+    <tr>
+        <td>{{payment.cust_id.first_name}}</td>
+        <td>{{payment.cust_id.surname}}</td>
+        <td>{{payment.cust_id.email_address}}</td>
+        <td>{{payment.cust_id.account_status}}</td>
+        <td>{{payment.payment_amount}}</td>
+        <td>{{payment.proof_of_payment}}</td>
+        <td>{{payment.payment_status}}</td>
+        <td>{{payment.comments}}</td>
+        <td>{{payment.reviewed_by}}</td>
+        <td><a href="{% url 'officer:edit-payment' payment.loan_payment_id %}">Edit</a></td>
+        <td><a href="{% url 'officer:delete-payment' payment.loan_payment_id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+</div>
+
+{% endblock content %}

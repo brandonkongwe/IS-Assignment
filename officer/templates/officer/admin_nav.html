@@ -1,0 +1,55 @@
+ <!--Navbar-->
+ <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'officer:admin-page' %}">Alpha Dreamers Banking</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Customers
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'officer:all-customers' %}">All Customers</a>
+                    <a class="dropdown-item" href="{% url 'officer:create-customer' %}">Add Customer</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Loans
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'officer:all-loans' %}">Loan Applications</a>
+                    <a class="dropdown-item" href="{% url 'predict:predict' %}">Predict Possible Defaulters</a>
+                    <a class="dropdown-item" href="{% url 'officer:create-amortization' %}">Add Amortization</a>
+                    <a class="dropdown-item" href="{% url 'officer:all-amortizations' %}">Loan Amortizations</a>
+                    <a class="dropdown-item" href="{% url 'officer:payments' %}">All Loan Payments</a>
+                    <a class="dropdown-item" href="{% url 'officer:create-payment' %}">Add Loan Payment</a>
+                    <a class="dropdown-item" href="{% url 'officer:create-type' %}">Add Loan Type</a>
+                    <a class="dropdown-item" href="{% url 'officer:loan-types' %}">Loan Types</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Users
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'officer:all-users' %}">All Users</a>
+                    <a class="dropdown-item" href="{% url 'officer:add-user' %}">Add User</a>
+                    <a class="dropdown-item" href="{% url 'officer:user-group' %}">Add User Groups</a>
+                </div>
+            </li>
+        </ul>
+        {% if user.is_authenticated %}
+        <a class="text-light" href="{% url 'officer:logout' %}">Logout</a>
+        <a class="btn btn-sm btn-outline-primary m-2"  href="{% url 'officer:admin-page' %}">{{user.username|title}}</a>
+        {% else %}
+        <a class="text-light" href="{% url 'officer:admin-login' %}">Login</a>
+        <a class="btn btn-sm btn-primary m-2"  href="{% url 'login:customer-signup' %}">Register</a>
+        {% endif %}
+    </div>
+    </nav>
+    <br>

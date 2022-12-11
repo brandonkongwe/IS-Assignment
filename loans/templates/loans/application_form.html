@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if user.is_authenticated and user.is_staff == False %}
+{% include 'loans/customer_nav.html' %}
+{% elif user.is_staff == True %}
+{% include 'officer/admin_nav.html' %}
+{% else %}
+{% include 'nav.html' %}
+<!--<a class="text-dark" href="/admin-login">Admin Login</a>-->
+{% endif %}
+
+{% include 'messages.html' %}
+
+{% load crispy_forms_tags %}
+
+{% if user.is_authenticated and user.is_staff == False %}
+<head>
+	<title>Apply for Loan | Alpha Dreamers Banking</title>
+</head>
+{% elif user.is_staff == True %}
+<head>
+	<title>Edit Loan Application | Alpha Dreamers Banking</title>
+</head>
+{% endif %}
+<!--Login-->
+<div class="container py-5">
+	<h1 class="font-weight-bold">Loan Application</h1>
+	<hr>
+	<br>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<br>
+		<button class="btn btn-primary" type="submit">Apply</button>
+	</form>
+	<br><br>
+</div>
+
+{% endblock %}

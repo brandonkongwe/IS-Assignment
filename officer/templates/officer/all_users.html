@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% include 'officer/admin_nav.html' %}
+{% include 'messages.html' %}
+{% load crispy_forms_tags %}
+<head>
+    <title>All Users | Alpha Dreamers Banking</title>
+</head>
+<div class="container-fluid">
+    <h1>Users</h1>
+    <br>
+    <table class="table table-bordered">
+        <tr>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Is Staff?</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for user in user %}
+        <tr>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.is_staff}}</td>
+            <td><a href="{% url 'officer:edit-user' user.username %}">Edit</a></td>
+            <td><a href="{% url 'officer:delete-user' user.username %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% include 'loans/customer_nav.html' %}
+{% include 'messages.html' %}
+{% load crispy_forms_tags %}
+<br>
+
+<head>
+    <title>Your Applications | Alpha Dreamers Banking</title>
+</head>
+<div class="container-fluid">
+    <h1>Your Loan Applications</h1>
+    <br>
+    <table class="table table-bordered">
+        <tr>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Account Status</th>
+            <th>Loan Type</th>
+            <th>Mode of Payment</th>
+            <th>Loan Amount</th>
+            <th>Loan Duration (in days)</th>
+            <th>Loan Status</th>
+            <th>Processed By</th>
+        </tr>
+        {% for loan_application in loans %}
+        <tr>
+            <td>{{loan_application.cust_id.first_name}}</td>
+            <td>{{loan_application.cust_id.surname}}</td>
+            <td>{{loan_application.cust_id.email_address}}</td>
+            <td>{{loan_application.cust_id.account_status}}</td>
+            <td>{{loan_application.loan_type_id}}</td>
+            <td>{{loan_application.mode_of_payment}}</td>
+            <td>{{loan_application.loan_amount}}</td>
+            <td>{{loan_application.loan_duration}}</td>
+            <td>{{loan_application.loan_status}}</td>
+            <td>{{loan_application.processed_by}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</div>
+<br><br>
+
+
+{% endblock content %}

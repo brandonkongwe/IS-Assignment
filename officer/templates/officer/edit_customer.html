@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated and user.is_staff == False %}
+{% include 'loans/customer_nav.html' %}
+{% elif user.is_staff == True %}
+{% include 'officer/admin_nav.html' %}
+{% else %}
+{% include 'nav.html' %}
+<!--<a class="text-dark" href="/admin-login">Admin Login</a>-->
+{% endif %}
+{% include 'messages.html' %}
+{% load crispy_forms_tags %}
+<head>
+    <title>Edit Customer | Alpha Dreamers Banking</title>
+</head>
+<!--Register-->
+<div class="container py-5">
+	<h1 class="font-weight-bold">Edit Customer</h1>
+	<hr>
+	<br>
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<br>
+		<button class="btn btn-primary" type="submit">Submit</button>
+	</form>
+	<br><br>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'loans:homepage' %}">Alpha Dreamers Banking</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        {% if user.is_authenticated %}
+        <a class="text-light" href="{% url 'login:logout' %}">Logout</a>
+        <a class="btn btn-sm btn-outline-primary m-2"  href=" ">{{user.username|title}}</a>
+        {% else %}
+        <a class="text-light" href="{% url 'login:customer-login' %}">Login</a>
+        <a class="btn btn-sm btn-primary m-2"  href="{% url 'login:customer-signup' %}">Register</a>
+        <style>
+            .tab {
+                display: inline-block;
+                margin-left: 850px;
+            }
+        </style>
+        <span span class="tab"></span>
+        <a class="btn btn-sm btn-primary m-2" href="{% url 'officer:admin-login' %}">Admin Login</a>
+        {% endif %}
+    </div>
+</nav>

@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+{% if user.is_authenticated and user.is_staff == False %}
+{% include 'loans/customer_nav.html' %}
+{% elif user.is_staff == True %}
+{% include 'officer/admin_nav.html' %}
+{% else %}
+{% include 'nav.html' %}
+<!--<a class="text-dark" href="/admin-login">Admin Login</a>-->
+{% endif %}
+
+<head>
+    <title>Admin Page | Alpha Dreamers Banking</title>
+</head>
+{% include 'messages.html' %}
+
+<!--CTA-->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 pb-4">
+            <h1 class="display-4 font-weight-bold">Admin Page</h1>
+        </div>
+    </div>
+    <div class="p-5 md-8 text-center alert alert-primary" role="alert">
+        <h1>{{user.first_name|title}} {{user.last_name|title}}</h1>
+    </div>
+    <div id="second-part">
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="status" style="background-color:darkcyan">
+                    <h3>Number of Customers</h3>
+                    <h1><span id="digit">{{count}}</span></h1>
+                </div>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="status" style="background-color:#4ea4f0">
+                    <h3>Loan Applications</h3>
+                    <h1><span id="digit">{{applications}}</span></h1>
+                </div>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="status" style="background-color:mediumseagreen">
+                    <h3>Approved Loans</h3>
+                    <h1><span id="digit">{{accepted}}</span></h1>
+                </div>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="status" style="background-color:maroon; color:white">
+                    <h3>Rejected Loans</h3>
+                    <h1><span id="digit">{{rejected}}</span></h1>
+                </div>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="status" style="background-color:darkorange">
+                    <h3>Pending Loans</h3>
+                    <h1><span id="digit">{{pending}}</span></h1>
+                </div>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="status" style="background-color:darkcyan">
+                    <h3>Number of Users</h3>
+                    <h1><span id="digit">{{user_count}}</span></h1>
+                </div>
+            </div>
+            {% endblock content %}

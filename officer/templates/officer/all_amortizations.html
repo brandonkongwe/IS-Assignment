@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated and user.is_staff == False %}
+{% include 'loans/customer_nav.html' %}
+{% elif user.is_staff == True %}
+{% include 'officer/admin_nav.html' %}
+{% else %}
+{% include 'nav.html' %}
+{% endif %}
+{% include 'messages.html' %}
+    {% load crispy_forms_tags %}
+<br>
+<head>
+    <title>All Amortizations | Alpha Dreamers Banking</title>
+</head>
+<div class="container-fluid">
+    <h1>Loan Amortizations</h1>
+<br>
+<table class="table table-bordered">
+    <tr>
+        <th>First Name</th>
+        <th>Surname</th>
+        <th>Loan Amount</th>
+        <th>Loan Type</th>
+        <th>Mode of Payment</th>
+        <th>Date</th>
+        <th>Payment Amount</th>
+        <th>Interest Payment</th>
+        <th>Principal Paid</th>
+        <th>Remaining Balance</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for amortization in amortizations %}
+    <tr>
+        <td>{{amortization.control_number.cust_id.first_name}}</td>
+        <td>{{amortization.control_number.cust_id.surname}}</td>
+        <td>{{amortization.control_number.loan_amount}}</td>
+        <td>{{amortization.control_number}}</td>
+        <td>{{amortization.control_number.mode_of_payment}}</td>
+        <td>{{amortization.date}}</td>
+        <td>{{amortization.payment_amount}}</td>
+        <td>{{amortization.interest_payment}}</td>
+        <td>{{amortization.principal_paid}}</td>
+        <td>{{amortization.remaining_balance}}</td>
+        <td><a href="{% url 'officer:edit-amortization' amortization.amortization_id %}">Edit</a></td>
+        <td><a href="{% url 'officer:delete-amortization' amortization.amortization_id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+{% endblock content %}

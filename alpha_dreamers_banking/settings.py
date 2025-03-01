@@ -38,15 +38,17 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
 
     "loans.apps.LoansConfig",
     "login.apps.LoginConfig",
     "officer.apps.OfficerConfig",
     "predict.apps.PredictConfig",
     "crispy_forms",
-    'rest_framework',
+    "crispy_bootstrap4",
+    'rest_framework'
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -132,10 +134,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+# STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, "static"),
+   os.path.join(BASE_DIR, "uploads"),
 ]
 
 MEDIA_URL = 'uploads/'  

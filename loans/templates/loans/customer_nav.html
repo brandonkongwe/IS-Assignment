@@ -24,10 +24,12 @@
         {% if user.is_authenticated %}
         <a class="text-light" href="{% url 'login:logout' %}">Logout</a>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        {%  for customer in customers %}
-        <a href="{% url 'login:edit-details' customer.cust_id %}">
-            <img src="{{ customer.profile_pic.url }}" style="height: 45px;" class="rounded-circle account-img" alt="User Image">
-        </a>
+        {% for customer in customers %}
+            {% if  customer.profile_pic.url %}
+            <a href="{% url 'login:edit-details' customer.cust_id %}">
+                <img src="{{ customer.profile_pic.url }}" style="height: 45px;" class="rounded-circle account-img" alt="User Image">
+            </a>
+            {% endif %}
         {% endfor %}
         {% else %}
         <a class="text-dark" href="{% url 'login:customer-login' %}">Login</a>

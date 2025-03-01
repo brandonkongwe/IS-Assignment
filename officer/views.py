@@ -74,7 +74,7 @@ def create_customer(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Customer added.")
-            return redirect("officer:admin-page")
+            return redirect("officer:all-customers")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'officer/edit_customer.html', context={'form': form})
@@ -89,7 +89,7 @@ def edit_customer(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, "Customer updated.")
-            return redirect("officer:admin-page")
+            return redirect("officer:all-customers")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'officer/edit_customer.html', context={'form': form})
@@ -101,7 +101,7 @@ def delete_customer(request, pk):
     if request.method == "POST":
         cust.delete()
         messages.success(request, "Customer deleted.")
-        return redirect("officer:admin-page")
+        return redirect("officer:all-customers")
     else:
         messages.error(request, "Customer not deleted.")
     return render(request, 'officer/delete_template.html', context={'object': cust})
@@ -137,7 +137,7 @@ def edit_loan(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, "Loan updated.")
-            return redirect("officer:admin-page")
+            return redirect("officer:all-loans")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'loans/application_form.html', context={'form': form})
@@ -149,7 +149,7 @@ def delete_loan(request, pk):
     if request.method == "POST":
         loan.delete()
         messages.success(request, "Loan deleted.")
-        return redirect("officer:admin-page")
+        return redirect("officer:all-loans")
     else:
         messages.error(request, "Loan not deleted.")
     return render(request, 'officer/delete_template.html', context={'object': loan})
@@ -170,7 +170,7 @@ def create_amortization(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Loan Amortization added.")
-            return redirect("officer:admin-page")
+            return redirect("officer:all-amortizations")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'loans/amortization_form.html', context={'form': form})
@@ -185,7 +185,7 @@ def edit_amortization(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, "Loan Amortization updated.")
-            return redirect("officer:admin-page")
+            return redirect("officer:all-amortizations")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'loans/amortization_form.html', context={'form': form})
@@ -197,7 +197,7 @@ def delete_amortization(request, pk):
     if request.method == "POST":
         amor.delete()
         messages.success(request, "Loan amortization deleted.")
-        return redirect("officer:admin-page")
+        return redirect("officer:all-amortizations")
     else:
         messages.error(request, "Loan amortization not deleted.")
     return render(request, 'officer/delete_template.html', context={'object': amor})
@@ -211,7 +211,7 @@ def create_payment(request):
         if form.is_valid():
             form.save()
             messages.info(request, "Successful loan payment.") 
-            return redirect('officer:admin-page')
+            return redirect('officer:payments')
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'officer/payment_form.html', context={'form': form})
@@ -226,7 +226,7 @@ def edit_payment(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, "Loan payment updated.")
-            return redirect("officer:admin-page")
+            return redirect("officer:payments")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'officer/payment_form.html', context={'form': form})
@@ -238,7 +238,7 @@ def delete_payment(request, pk):
     if request.method == "POST":
         pay.delete()
         messages.success(request, "Loan payment deleted.")
-        return redirect("officer:admin-page")
+        return redirect("officer:payments")
     else:
         messages.error(request, "Loan amortization not deleted.")
     return render(request, 'officer/delete_template.html', context={'object': pay})
@@ -266,7 +266,7 @@ def add_user(request):
         if form.is_valid():
             form.save()
             messages.success(request, "User added.")
-            return redirect("officer:admin-page")
+            return redirect("officer:all-users")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'officer/add_user.html', context={'form': form})
@@ -281,7 +281,7 @@ def edit_user(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, "User updated.")
-            return redirect("officer:admin-page")
+            return redirect("officer:all-users")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'officer/add_user.html', context={'form': form})
@@ -293,7 +293,7 @@ def delete_user(request, pk):
     if request.method == "POST":
         user.delete()
         messages.success(request, "User deleted.")
-        return redirect("officer:admin-page")
+        return redirect("officer:all-users")
     else:
         messages.error(request, "User not deleted.")
     return render(request, 'officer/delete_template.html', context={'object': user})
@@ -314,7 +314,7 @@ def add_loan_type(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Loan type added.")
-            return redirect("officer:admin-page")
+            return redirect("officer:loan-types")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'officer/loan_type.html', context={'form': form})
@@ -329,7 +329,7 @@ def edit_loan_type(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, "Loan Type updated.")
-            return redirect("officer:admin-page")
+            return redirect("officer:loan-types")
         else:
             messages.error(request, "Invalid details.")
     return render(request, 'officer/loan_type.html', context={'form': form})
@@ -341,7 +341,7 @@ def delete_loan_type(request, pk):
     if request.method == "POST":
         type.delete()
         messages.success(request, "Loan Type deleted.")
-        return redirect("officer:admin-page")
+        return redirect("officer:loan-types")
     else:
         messages.error(request, "Loan Type not deleted.")
     return render(request, 'officer/delete_template.html', context={'object': type})

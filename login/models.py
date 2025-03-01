@@ -29,7 +29,7 @@ class customer(models.Model):
     civil_status = models.CharField(max_length=250, null=False, blank=False)
     birthdate = models.DateField()
     age = models.IntegerField(null=False, blank=False)
-    profile_pic = models.ImageField(upload_to='img', null=True, blank=True)
+    profile_pic = models.ImageField(upload_to='img', null=True, blank=True, default='img/default.jpg')
     # username = models.CharField(max_length=250, null=False, blank=False)
     # username = models.OneToOneField(user, unique=True, limit_choices_to={'is_staff': False},on_delete=models.CASCADE, 
     # related_name="customer")

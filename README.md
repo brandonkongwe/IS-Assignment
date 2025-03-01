@@ -64,19 +64,13 @@ IS assignment. Loan management system created using Django, HTML, and Bootstrap 
 ### Customer Features
 
 - **Register**: Create a new account.
-
 - **Login**: Access your dashboard.
-
 - **Apply for Loan**: Submit a loan application.
-
 - **Loan Payments**: Make payments towards your loan.
 
 ### Admin Features
 
 - **Manage Customers**: Add, update, or delete customer records.
-
 - **Manage Loans**: Approve, reject, or update loan applications.
-
 - **Manage Payments**: Review and process loan payments.
-
 - **Predict Defaulters**: Use the loan prediction model to assess the likelihood of loan default.
